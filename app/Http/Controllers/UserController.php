@@ -23,7 +23,7 @@ class UserController extends Controller
             'title'=> 'login',
         ]);
     }
-
+                
     public function doLogin(Request $request): Response|RedirectResponse
     {
         $user = $request->input('user');
@@ -48,8 +48,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function doLogout()
+    public function doLogout(Request $request): RedirectResponse 
     {
-
+        $request->session()->forget('user');
+        return redirect('/');
     }
 }
