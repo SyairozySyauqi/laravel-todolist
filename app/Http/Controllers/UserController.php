@@ -16,14 +16,14 @@ class UserController extends Controller
         $this->userService = $userService;
     }
 
-    public function login():Response
+    public function login(): Response
     {
         return response()
-        ->view('user.login', [
-            'title'=> 'login',
-        ]);
+            ->view('user.login', [
+                'title' => 'login',
+            ]);
     }
-                
+
     public function doLogin(Request $request): Response|RedirectResponse
     {
         $user = $request->input('user');
@@ -38,17 +38,17 @@ class UserController extends Controller
         }
 
         if ($this->userService->login($user, $password)) {
-            $request->session()->put('user',$user);
+            $request->session()->put('user', $user);
             return redirect('/');
         }
 
         return response()->view('user.login', [
-            'title'=> 'Login',
-            'error'=> 'User or password is wrong',
+            'title' => 'Login',
+            'error' => 'User or password is wrong',
         ]);
     }
 
-    public function doLogout(Request $request): RedirectResponse 
+    public function doLogout(Request $request): RedirectResponse
     {
         $request->session()->forget('user');
         return redirect('/');

@@ -7,7 +7,7 @@ use App\Services\UserService;
 class UserServiceImpl implements UserService
 {
     private array $users = [
-        "MSS"=> "test",
+        "MSS" => "test",
     ];
 
 
@@ -19,6 +19,5 @@ class UserServiceImpl implements UserService
 
         $correctPassword = $this->users[$username];
         return $password == $correctPassword;
-
     }
 }
